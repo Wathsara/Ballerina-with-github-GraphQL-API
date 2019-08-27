@@ -22,8 +22,8 @@ public function main() {
             http:Client clientEndpoint = new("https://api.github.com/users/"+username);
             
             io:println("Non Followers");
-            var responseFollowers = clientEndpoint->get("/followers");
-            var responseFollowings = clientEndpoint->get("/following");
+            var responseFollowers = clientEndpoint->get("/followers?per_page=1000");
+            var responseFollowings = clientEndpoint->get("/following?per_page=1000");
 
             if (responseFollowers is http:Response) {
                 if (responseFollowings is http:Response) {
@@ -60,7 +60,7 @@ public function main() {
             string username = io:readln("Enter username: ");
             http:Client clientEndpoint = new("https://api.github.com/users/"+username);            
             io:println("---------------Organization---------------");
-            var responseOrgs = clientEndpoint->get("/orgs");
+            var responseOrgs = clientEndpoint->get("/orgs?per_page=1000");
                 if (responseOrgs is http:Response) {
                     var orgs = responseOrgs.getJsonPayload();   
                     if (orgs is json) {
@@ -80,7 +80,7 @@ public function main() {
             string username = io:readln("Enter username: ");
             http:Client clientEndpoint = new("https://api.github.com/users/"+username);            
             io:println("---------------Repositories---------------");
-            var responseRepos = clientEndpoint->get("/repos");
+            var responseRepos = clientEndpoint->get("/repos?per_page=1000");
             if (responseRepos is http:Response) {
                     var repos = responseRepos.getJsonPayload();   
                     if (repos is json) {
@@ -103,6 +103,7 @@ public function main() {
             if (userResponse is http:Response) {
                 var user = userResponse.getJsonPayload();   
                 if (user is json) {   
+                   
                     io:println(user.name); 
                     io:println(user.login);
                     io:println(user.blog); 

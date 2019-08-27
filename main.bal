@@ -21,7 +21,7 @@ public function main() {
             string username = io:readln("Enter username: ");
             http:Client clientEndpoint = new("https://api.github.com/users/"+username);
             
-            io:println("Non Followers");
+            io:println("---------------Non Followers---------------");
             var responseFollowers = clientEndpoint->get("/followers?per_page=1000");
             var responseFollowings = clientEndpoint->get("/following?per_page=1000");
 
@@ -55,6 +55,7 @@ public function main() {
                 } else {
                     io:println("Error when calling the backend: ");
                 }
+                io:println("---------------Non Followers---------------");
             }
         }else if(choice == 2){
             string username = io:readln("Enter username: ");
@@ -104,14 +105,15 @@ public function main() {
                 var user = userResponse.getJsonPayload();   
                 if (user is json) {   
                    
-                    io:println(user.name); 
-                    io:println(user.login);
-                    io:println(user.blog); 
-                    io:println(user.location);
-                    io:println(user.bio); 
-                    io:println(user.public_repos);
-                    io:println(user.followers); 
-                    io:println(user.following);
+                    io:println("Name : ",user.name.toString()); 
+                    io:println("UserName : ",user.login.toString());
+                    io:println("Photo URL : ",user.avatar_url.toString()); 
+                    io:println("Blog : " , user.blog.toString()); 
+                    io:println("Location : ",user.location.toString());
+                    io:println("Bio : ",user.bio.toString()); 
+                    io:println("Number Of Repos : ",user.public_repos.toString());
+                    io:println("Number of Followers : ",user.followers.toString()); 
+                    io:println("Number of Following : ",user.following.toString());
 
                 } else {
                     io:println("Invalid payload received:" );

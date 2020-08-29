@@ -1,0 +1,22 @@
+name: Docker_Build
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Docker Build For food boot
+      uses: actions/checkout@v2
+    
+    - name: Push to GitHub Packages
+      uses: docker/build-push-action@v1
+      with:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GH_TOKEN }}
+        registry: docker.pkg.github.com
+        repository:  wathsara/ballerina-with-github-api/github_stats 
+        tag_with_ref: true

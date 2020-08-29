@@ -14,10 +14,10 @@ public function main() {
         io:println("5. Exit");
 
         // read user's choice
-        string val = io:readln("Enter choice 1 - 5: ");
+        string choice = io:readln("Enter choice 1 - 5: ");
         
-        var choice = int.convert(val);
-        if (choice == 1){
+        //var choice = int.convert(val);
+        if (choice == "1"){
             string username = io:readln("Enter username: ");
             http:Client clientEndpoint = new("https://api.github.com/users/"+username);
             
@@ -57,7 +57,7 @@ public function main() {
                 }
                 io:println("---------------Non Followers---------------");
             }
-        }else if(choice == 2){
+        }else if(choice == "2"){
             string username = io:readln("Enter username: ");
             http:Client clientEndpoint = new("https://api.github.com/users/"+username);            
             io:println("---------------Organization---------------");
@@ -77,7 +77,7 @@ public function main() {
 
             
 
-        }else if(choice == 3){
+        }else if(choice == "3"){
             string username = io:readln("Enter username: ");
             http:Client clientEndpoint = new("https://api.github.com/users/"+username);            
             io:println("---------------Repositories---------------");
@@ -96,7 +96,7 @@ public function main() {
             }
             io:println("---------------Repositories---------------");
 
-        }else if(choice == 4){
+        }else if(choice == "4"){
             string username = io:readln("Enter username: ");
             http:Client clientEndpoint = new("https://api.github.com/users/"+username);            
             io:println("---------------User Summary---------------");
@@ -121,7 +121,7 @@ public function main() {
             }
             io:println("---------------User Summary---------------");
 
-        }else if(choice == 5){
+        }else if(choice == "5"){
            break;
 
         }
